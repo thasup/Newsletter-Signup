@@ -1,22 +1,24 @@
+// Require modules
 const express = require('express');
+const mailchimp = require('@mailchimp/mailchimp_marketing');
 
+// Start up an instance of app
 const app = express();
 
+// Middleware
 app.use(express.static('public'));
 app.use(express.urlencoded({extended: true}));
 
+// Defines the port number 
 const port = 3000;
-
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
 
+// GET route
 app.get('/', (req, res) => {
-    res.sendFile(`${__dirname}/signup.html`)
+    res.sendFile(`${__dirname}/public/signup.html`)
 });
-
-// Require mailchimp module
-const mailchimp = require('@mailchimp/mailchimp_marketing');
 
 // Set your API key, server, List Id
 mailchimp.setConfig({
@@ -25,7 +27,7 @@ mailchimp.setConfig({
 });
 const listId = '6ef7ec4a54';
 
-// Declare function that add a contact to an audience
+// Declare 'run' function that add a contact to an audience
 async function run(data) {
     const response = await mailchimp.lists.addListMember(listId, {
         email_address: data.email,
@@ -36,7 +38,7 @@ async function run(data) {
         }
     });
 
-    // Show success message
+    // Show successful message
     console.log(`Successfully added contact as an audience member. The contact's id is ${response.id}.`);
 };
 
@@ -52,5 +54,19 @@ app.post('/', (req, res) => {
     console.log(subscribingUser);
 
     // Execute function
-    run(subscribingUser);
+    run(subscribingUser)
+    .then(() => {
+        if (res.statusCode === 200) {
+            console.log("Success!");
+            res.sendFile(`${__dirname}/public/success.html`);
+        } else {
+            console.log("Unsuccessful.");
+            res.sendFile(`${__dirname}/public/failure.html`);
+        }
+    });
+});
+
+// POST route to redirect
+app.post('/fail', (req, res) => {
+    res.redirect('/');
 });
