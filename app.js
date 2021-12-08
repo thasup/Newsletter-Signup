@@ -1,6 +1,8 @@
 // Require modules
 const express = require('express');
 const mailchimp = require('@mailchimp/mailchimp_marketing');
+const dotenv = require('dotenv');
+dotenv.config();
 
 // Start up an instance of app
 const app = express();
@@ -20,9 +22,11 @@ app.get('/', (req, res) => {
     res.sendFile(`${__dirname}/public/signup.html`)
 });
 
+const api = process.env.API_KEY_MAILCHIMP;
+
 // Set your API key, server, List Id
 mailchimp.setConfig({
-  apiKey: 'd8daa9f3e08f1c188a026314f640ba6e-us20',
+  apiKey: `${api}`,
   server: 'us20',
 });
 const listId = '6ef7ec4a54';
@@ -64,9 +68,4 @@ app.post('/', (req, res) => {
             res.sendFile(`${__dirname}/public/failure.html`);
         }
     });
-});
-
-// POST route to redirect
-app.post('/fail', (req, res) => {
-    res.redirect('/');
 });
