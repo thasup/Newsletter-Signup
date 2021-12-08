@@ -26,7 +26,7 @@ const api = process.env.API_KEY_MAILCHIMP;
 
 // Set your API key, server, List Id
 mailchimp.setConfig({
-  apiKey: `${api}`,
+  apiKey: `d8daa9f3e08f1c188a026314f640ba6e-us20`,
   server: 'us20',
 });
 const listId = '6ef7ec4a54';
