@@ -12,7 +12,7 @@ app.use(express.static('public'));
 app.use(express.urlencoded({extended: true}));
 
 // Defines the port number 
-const port = 3000;
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
