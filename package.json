@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/thasup/Newsletter-Signup#readme",
   "dependencies": {
+    "@mailchimp/mailchimp_marketing": "^3.0.72",
     "express": "^4.17.1",
     "nodemon": "^2.0.15"
   }
