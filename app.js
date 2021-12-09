@@ -13,6 +13,7 @@ app.use(express.urlencoded({extended: true}));
 
 // Defines the port number 
 const port = process.env.PORT || 3000;
+
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
@@ -22,11 +23,9 @@ app.get('/', (req, res) => {
     res.sendFile(`${__dirname}/public/signup.html`)
 });
 
-const api = process.env.API_KEY_MAILCHIMP;
-
 // Set your API key, server, List Id
 mailchimp.setConfig({
-  apiKey: `d8daa9f3e08f1c188a026314f640ba6e-us20`,
+  apiKey: `${process.env.API_KEY_MAILCHIMP}`,
   server: 'us20',
 });
 const listId = '6ef7ec4a54';
