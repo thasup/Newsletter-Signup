@@ -6,7 +6,7 @@
 <!-- Describe your project in brief -->
 This is a single newsletter sign up page wrapped with **Bootstrap** framework and powered by **Express** on the back-end which stored your data via **Mailchimp** API.
 
-[Newsletter Signup Link](https://thasup-newsletter-signup.herokuapp.com/)
+[Newsletter Signup Link](https://thasup-newsletter.onrender.com/)
 
 # Table of contents
 
@@ -29,10 +29,11 @@ This is a single newsletter sign up page wrapped with **Bootstrap** framework an
 
 1. clone this git on computer
 2. install *node.js*
-3. run command `npm install` on terminal
-4. run command `nodemon app.js` on terminal
-5. go to `http://localhost:3000/`
-6. happy!
+3. set up `env` file and add mailchimp API key
+4. run command `npm install` on terminal
+5. run command `nodemon app.js` on terminal
+6. go to `http://localhost:3000/`
+7. happy!
 
 # Languages
 [(Back to top)](#table-of-contents)
